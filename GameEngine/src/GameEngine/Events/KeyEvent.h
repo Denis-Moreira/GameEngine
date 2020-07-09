@@ -20,13 +20,16 @@ namespace GameEngine {
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
-			KeyEvent(keycode), m_RepeatCount(repeatCount){}
+			: KeyEvent(keycode), m_RepeatCount(repeatCount){}
 		
 		inline int GetRepeatCount() const { return m_RepeatCount; }
 
-		std::stringstream ss;
-		ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << "repeats)";
-		return ss.str();
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << "repeats)";
+			return ss.str();
+		}
 
 		EVENT_CLASS_TYPE(KeyPressed)
 	private:
@@ -37,11 +40,11 @@ namespace GameEngine {
 	{
 	public:
 		KeyReleasedEvent(int keycode)
-			KeyEvent(keycode){}
+			: KeyEvent(keycode){}
 
 		inline int GetRepeatCount() const { return m_RepeatCount; }
 
-		std::strings ToString() const override
+		std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyReleasedEvent: " << m_KeyCode;
@@ -49,5 +52,7 @@ namespace GameEngine {
 		}
 
 		EVENT_CLASS_TYPE(KeyReleased)
+	private:
+		int m_RepeatCount;
 	};
 }

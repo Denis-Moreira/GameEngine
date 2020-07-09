@@ -40,7 +40,7 @@ namespace GameEngine {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseScrolledEvent: x:" << m_XOffset << ", y:" << m_YOffset();
+			ss << "MouseScrolledEvent: x:" << m_XOffset << ", y:" << m_YOffset;
 			return ss.str();
 		}
 
@@ -73,7 +73,7 @@ namespace GameEngine {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(MouseButtonPressedEvent)
+		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
 	class GE_API MouseButtonReleasedEvent : public MouseButtonEvent
@@ -89,6 +89,6 @@ namespace GameEngine {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(MouseButtonReleasedEvent)
+		EVENT_CLASS_TYPE(MouseButtonReleased)
 	};
 }
