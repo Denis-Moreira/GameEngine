@@ -8,13 +8,22 @@ workspace "GameEngine"
 		"Dist"
 	}
 
+outputdir = "%{cfg.buildcfg}"
+includeDir = {}
+includeDir["GLFW"] = "GameEngine/vendor/GLFW/include"
+
+include "GameEngine/vendor/GLFW"
+
 project "GameEngine"
 	location "GameEngine"
 	kind "SharedLib"
 	language "C++"
 
-	targetdir ("bin/%{cfg.buildcfg}/%{prj.name}")
-	objdir ("bin-int/%{cfg.buildcfg}/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "gepch.h"
+	pchsource "GameEngine/src/gepch.cpp"
 
 	files
 	{
@@ -25,7 +34,14 @@ project "GameEngine"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{includeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -41,7 +57,7 @@ project "GameEngine"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/%{cfg.buildcfg}/SandBox")
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/SandBox")
 		}
 
 	filter "configurations:Debug"
@@ -61,8 +77,8 @@ project "SandBox"
 	kind "ConsoleApp"
 	language "C++"
 
-	targetdir ("bin/%{cfg.buildcfg}/%{prj.name}")
-	objdir ("bin-int/%{cfg.buildcfg}/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
