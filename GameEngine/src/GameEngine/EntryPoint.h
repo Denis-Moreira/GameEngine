@@ -6,7 +6,10 @@ extern GameEngine::Application* GameEngine::CreateApplication();
 
 int main(int argc, char** argv)
 {
-	printf("Game Engine executando!\n");
+	GameEngine::Log::Init();
+	GE_CORE_WARN("GameEngine Log iniciado!");
+	GE_INFO("Application Log iniciado! Var={0}", 5);
+
 	auto app = GameEngine::CreateApplication();
 	app->Run();
 	delete app;
