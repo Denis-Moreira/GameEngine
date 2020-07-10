@@ -7,7 +7,6 @@
 #include "GameEngine/Events/Event.h"
 #include "GameEngine/Events/ApplicationEvent.h"
 
-
 namespace GameEngine {
 	class GE_API Application
 	{

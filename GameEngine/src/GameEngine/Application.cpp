@@ -2,7 +2,8 @@
 #include "Application.h"
 #include "GameEngine/Events/ApplicationEvent.h"
 #include "GameEngine/Log.h"
-#include <GLFW/glfw3.h>
+#include <Glad/glad.h>
+
 
 namespace GameEngine {
 
