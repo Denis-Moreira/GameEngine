@@ -12,7 +12,10 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "GameEngine/Application.h"
+#include "GameEngine/Events/ApplicationEvent.h"
 #include "GameEngine/Log.h"
+#include "GameEngine/Input.h"
 
 #ifdef GE_PLATFORM_WINDOWS
 #include <Windows.h>

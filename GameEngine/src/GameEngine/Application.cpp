@@ -1,7 +1,8 @@
 #include "gepch.h"
-#include "Application.h"
+#include "GameEngine/Application.h"
 #include "GameEngine/Events/ApplicationEvent.h"
 #include "GameEngine/Log.h"
+#include "GameEngine/Input.h"
 #include <Glad/glad.h>
 
 
@@ -56,6 +57,8 @@ namespace GameEngine {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+			auto [x, y] = Input::GetMousePosition();
+			GE_CORE_TRACE("{0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}
